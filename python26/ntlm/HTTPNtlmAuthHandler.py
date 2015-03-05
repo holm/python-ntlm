@@ -68,9 +68,9 @@ Verify "normal" operation.
                 raise urllib2.URLError('no host given')
             h = None
             if req.get_full_url().startswith('https://'):
-                h = httplib.HTTPSConnection(host) # will parse host:port
+                h = httplib.HTTPSConnection(host, timeout=req.timeout)  # will parse host:port
             else:
-                h = httplib.HTTPConnection(host) # will parse host:port
+                h = httplib.HTTPConnection(host, timeout=req.timeout)  # will parse host:port
             h.set_debuglevel(self._debuglevel)
             # we must keep the connection because NTLM authenticates the connection, not single requests
             headers["Connection"] = "Keep-Alive"
